@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:todoapp/models/user_model.dart';
@@ -18,7 +17,7 @@ class _RegisterViewState extends State<RegisterView> {
   final TextEditingController _passController = TextEditingController();
 
   UserModel _userModel = UserModel();
-  AuthService _authService = AuthService();
+  final AuthService _authService = AuthService();
 
   final _regKey = GlobalKey<FormState>();
   bool _isLoading = false;
@@ -35,7 +34,7 @@ class _RegisterViewState extends State<RegisterView> {
       createdAt: DateTime.now(),
     );
     try {
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(const Duration(seconds: 3));
       final userdata = await _authService.registerUser(_userModel);
       if (userdata != null) {
         // ignore: use_build_context_synchronously
@@ -50,6 +49,7 @@ class _RegisterViewState extends State<RegisterView> {
         _isLoading = false;
       });
       List err = e.toString().split(']');
+      // ignore: use_build_context_synchronously
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -246,7 +246,7 @@ class _RegisterViewState extends State<RegisterView> {
               ),
               Visibility(
                 visible: _isLoading,
-                child: Center(
+                child: const Center(
                   child: CircularProgressIndicator(),
                 ),
               ),

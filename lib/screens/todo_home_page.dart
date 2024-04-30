@@ -14,7 +14,7 @@ class TodoHomePage extends StatefulWidget {
 }
 
 class _TodoHomePageState extends State<TodoHomePage> {
-  TaskServices _taskServices = TaskServices();
+  final TaskServices _taskServices = TaskServices();
   @override
   Widget build(BuildContext context) {
     final themedata = Theme.of(context);
